@@ -157,7 +157,7 @@ class CartItemDeleteView(APIView):
         )
 
 
-class OrderView(APIView):
+class OrderItems(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request):
