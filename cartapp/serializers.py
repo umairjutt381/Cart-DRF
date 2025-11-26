@@ -22,7 +22,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
 class CartItemSerializer(serializers.ModelSerializer):
     product = ProductSerializer()
-    total_price = serializers.FloatField(read_only=True)
+    total_price = serializers.FloatField(read_only=True)   #show value in response ,and secure
 
     class Meta:
         model = CartItem
@@ -38,7 +38,7 @@ class CartSerializer(serializers.ModelSerializer):
 
 class OrderItemSerializer(serializers.ModelSerializer):
     product_name = serializers.CharField(source='product.name', read_only=True)
-
+       # use source to fetch value
     class Meta:
         model = OrderItem
         fields = ['id', 'product', 'product_name', 'quantity', 'total_price']
