@@ -22,6 +22,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
 class CartItemSerializer(serializers.ModelSerializer):
     product = ProductSerializer()
+    # product = serializers.IntegerField(source='product.id', read_only=True)          #for just show id
     total_price = serializers.FloatField(read_only=True)   #show value in response ,and secure
 
     class Meta:
