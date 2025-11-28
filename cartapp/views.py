@@ -200,23 +200,6 @@ class MyOrdersView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
-        orders = Order.objects.filter(user=request.user)
-        data = []
-        for order in orders:
-            items = order.items.all()
-            items_data = [
-                {
-                    "product": i.product.name,
-                    "quantity": i.quantity,
-                    "total_price": i.total_price
-                } for i in items
-            ]
-
-            data.append({
-                "order_id": order.id,
-                "total_amount": order.total_amount,
-                "payment_method": order.payment_method,
-                "items": items_data,
-                "created_at": order.created_at
-            })
-        return Response(data)
+        orders_queryset = Order.objects.filter(user=request.user)
+        serializer = OrderSerializer(orders_queryset, many=True)
+        return Response(serializer.data)
