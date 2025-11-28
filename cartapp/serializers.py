@@ -39,7 +39,7 @@ class CartSerializer(serializers.ModelSerializer):
 
 class OrderItemSerializer(serializers.ModelSerializer):
     product_name = serializers.CharField(source='product.name', read_only=True)
-       # use source to fetch value
+       # use source to fetch one value
     class Meta:
         model = OrderItem
         fields = ['id', 'product', 'product_name', 'quantity', 'total_price']
