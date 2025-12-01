@@ -18,21 +18,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-# CSRF Trusted Origins (add this near ALLOWED_HOSTS)
 CSRF_TRUSTED_ORIGINS = [
     'https://cart-drf-production.up.railway.app',
     'https://*.railway.app',  # This allows all Railway domains
 ]
-
-# # Make sure you also have:
-# ALLOWED_HOSTS = [
-#     'localhost',
-#     '127.0.0.1',
-#     '.railway.app',
-#     'cart-drf-production.up.railway.app',
-# ]
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -65,6 +54,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'DjangoCart.urls'
 
 AUTHENTICATION_BACKENDS = [
+    'cartapp.backends.EmailOrUsernameModelBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
 
