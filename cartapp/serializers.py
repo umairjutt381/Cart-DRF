@@ -5,13 +5,17 @@ from .models import User, Product, Cart, CartItem,OrderItem,Order
 class UserRegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username', 'phone', 'password', 'role']
+        fields = ['username', 'phone','email', 'password', 'role']
+        extra_kwargs = {
+            'password': {'write_only': True}
+        }
 
-
-class LoginSerializer(serializers.Serializer):
-    username = serializers.CharField(required=False)
-    phone = serializers.CharField(required=False)
-    password = serializers.CharField()
+    def create(self, validated_data):
+        password = validated_data.pop('password')
+        user = User(**validated_data)
+        user.set_password(password)
+        user.save()
+        return user
 
 
 class ProductSerializer(serializers.ModelSerializer):

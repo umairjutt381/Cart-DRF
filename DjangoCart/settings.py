@@ -54,7 +54,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'DjangoCart.urls'
 
 AUTHENTICATION_BACKENDS = [
-    'cartapp.backends.EmailOrUsernameModelBackend',
+    'cartapp.backends.UsernameEmailPhoneBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
 

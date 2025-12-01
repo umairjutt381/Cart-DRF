@@ -3,7 +3,8 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    phone = models.CharField(max_length=20, unique=True)
+    phone = models.CharField(max_length=20, unique=True, null=True, blank=True)
+    email = models.EmailField(max_length=50, unique=True)
     role = models.CharField(max_length=10, default="user")
 
     def __str__(self):
