@@ -16,9 +16,21 @@ SECRET_KEY = 'django-insecure-!7ee6=t54(on^6i4e6oabs^+qvn(+!^4dz4@)_h#ucq_w$csty
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1','.railway.app','cart-drf-production.up.railway.app',]
+ALLOWED_HOSTS = ['*']
 
+# CSRF Trusted Origins (add this near ALLOWED_HOSTS)
+CSRF_TRUSTED_ORIGINS = [
+    'https://cart-drf-production.up.railway.app',
+    'https://*.railway.app',  # This allows all Railway domains
+]
 
+# # Make sure you also have:
+# ALLOWED_HOSTS = [
+#     'localhost',
+#     '127.0.0.1',
+#     '.railway.app',
+#     'cart-drf-production.up.railway.app',
+# ]
 
 # Application definition
 
